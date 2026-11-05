@@ -1,12 +1,13 @@
 # Meta Muse / Quantumult X remote filter
 # Source: official Meta Muse service and verified public AI rule collections.
-# In Quantumult X, set this remote rule's force-policy to your chosen US proxy policy.
+# No force-policy override: QX automatically creates the Muse policy group if missing.
+# After the group appears, add or select your preferred US proxy node in the Muse group.
 # Note: Meta account / Graph hosts are shared with other Meta services.
-host-suffix, muse.ai, proxy
-host-suffix, metaaivm.com, proxy
-host-suffix, meta.ai, proxy
-host-suffix, metaaiusercontent.com, proxy
-host, auth.meta.com, proxy
-host, accountscenter.meta.com, proxy
-host, meta.graph.meta.com, proxy
-host, ar.graph.meta.com, proxy
+host-suffix, muse.ai, Muse
+host-suffix, metaaivm.com, Muse
+host-suffix, meta.ai, Muse
+host-suffix, metaaiusercontent.com, Muse
+host, auth.meta.com, Muse
+host, accountscenter.meta.com, Muse
+host, meta.graph.meta.com, Muse
+host, ar.graph.meta.com, Muse
