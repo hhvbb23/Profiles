@@ -1,0 +1,19 @@
+# Quantumult X remote filter - ChatGPT / OpenAI
+# Updated: 2026-11-06
+# Source: OpenAI Help Center network recommendations (2026-10)
+# Policy: GPT (choose a stable proxy node for this policy in QX)
+# Covers ChatGPT iOS/web, authentication, content, Codex WebSocket hosts.
+# Exact shared third-party hosts limited to OpenAI-documented endpoints.
+# This filter does not configure the proxy or guarantee long-lived WebSocket stability.
+host-suffix, chatgpt.com, GPT
+host-suffix, openai.com, GPT
+host-suffix, oaistatic.com, GPT
+host-suffix, oaiusercontent.com, GPT
+host-suffix, oaistatsig.com, GPT
+host, cdn.openaimerge.com, GPT
+host, cdn.workos.com, GPT
+host, forwarder.workos.com, GPT
+host, frontend-apps-multi-region.workos.com, GPT
+host, setup.workos.com, GPT
+host, images.workoscdn.com, GPT
+host, workos.imgix.net, GPT
