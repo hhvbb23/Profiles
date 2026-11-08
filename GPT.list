@@ -1,19 +1,66 @@
 # Quantumult X remote filter - ChatGPT / OpenAI
-# Updated: 2026-11-06
-# Source: OpenAI Help Center network recommendations (2026-10)
-# Policy: GPT (choose a stable proxy node for this policy in QX)
-# Covers ChatGPT iOS/web, authentication, content, Codex WebSocket hosts.
-# Exact shared third-party hosts limited to OpenAI-documented endpoints.
-# This filter does not configure the proxy or guarantee long-lived WebSocket stability.
+# Updated: 2026-11-08
+# Policy: GPT (keep your existing Quantumult X policy group / remote URL)
+# Sources:
+#   OpenAI network requirements:
+#   https://help.openai.com/en/articles/9247338-network-recommendations-for-chatgpt-errors-on-web-and-apps
+#   Community cross-check: blackmatrix7/ios_rule_script, TannayeJ/ai-vendor-rules,
+#   kiki0-zz/QX_rules, storevip/Quantumult-X-Rules
+# Covers ChatGPT iOS/web, Codex streaming/WebSocket, login, assets, upload,
+# historical Azure CDN, real-time Azure Web PubSub and LiveKit voice endpoints.
+# Routing rules are not a WebSocket keepalive or a guarantee of node reliability.
+#
+# 1. OpenAI-owned and product domains (includes ws.chatgpt.com / ios.chat.openai.com)
 host-suffix, chatgpt.com, GPT
 host-suffix, openai.com, GPT
 host-suffix, oaistatic.com, GPT
 host-suffix, oaiusercontent.com, GPT
 host-suffix, oaistatsig.com, GPT
+host-suffix, chat.com, GPT
+host-suffix, sora.com, GPT
+host-suffix, chatgpt.site, GPT
+
+# 2. OpenAI-specific content/CDN and Azure real-time backends
 host, cdn.openaimerge.com, GPT
+host, openaiassets.blob.core.windows.net, GPT
+host, openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net, GPT
+host, openaicomproductionae4b.blob.core.windows.net, GPT
+host, production-openaicom-storage.azureedge.net, GPT
+host-suffix, openaiapi-site.azureedge.net, GPT
+host-suffix, openaicom.imgix.net, GPT
+host-suffix, openai.com.cdn.cloudflare.net, GPT
+# Narrow keyword: specifically OpenAI's named Azure Web PubSub instances,
+# not the entire shared webpubsub.azure.com domain.
+host-keyword, chatgpt-async-webps-prod, GPT
+
+# 3. Authentication and challenge (exact shared-service hosts only)
 host, cdn.workos.com, GPT
 host, forwarder.workos.com, GPT
 host, frontend-apps-multi-region.workos.com, GPT
 host, setup.workos.com, GPT
 host, images.workoscdn.com, GPT
 host, workos.imgix.net, GPT
+host, challenges.cloudflare.com, GPT
+host, openai-api.arkoselabs.com, GPT
+host, client-api.arkoselabs.com, GPT
+
+# 4. Feature configuration and real-time voice
+host, api.statsig.com, GPT
+host, events.statsigapi.net, GPT
+host-suffix, featuregates.org, GPT
+host-suffix, chatgpt.livekit.cloud, GPT
+host-suffix, host.livekit.cloud, GPT
+host-suffix, turn.livekit.cloud, GPT
+
+# 5. Exact auxiliary hosts from OpenAI's official network list
+# Shared third-party hosts may also be used by unrelated applications.
+host, js.intercomcdn.com, GPT
+host, js.stripe.com, GPT
+host, o207216.ingest.sentry.io, GPT
+host, o33249.ingest.sentry.io, GPT
+host, rum.browser-intake-datadoghq.com, GPT
+
+# Avoid routing entire shared platforms (auth0.com, stripe.com, sentry.io,
+# intercom.io, Cloudflare CDN, Azure, Google, Apple and large ASN/IP ranges).
+# The official allowlist also mentions ct.sendgrid.net and humb.apple.com,
+# but they are intentionally not proxied here as they do not carry chat streams.
