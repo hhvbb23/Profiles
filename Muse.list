@@ -1,5 +1,5 @@
 # Quantumult X remote filter - Meta Muse
-# Updated: 2026-11-06
+# Updated: 2026-11-08
 # Policy: Muse (choose a working proxy node for this policy in QX)
 # Match Muse-specific services and exact shared Meta login/Graph hosts.
 # Shared Meta hosts may also serve other Meta apps.
@@ -12,3 +12,6 @@ host, auth.meta.com, Muse
 host, accountscenter.meta.com, Muse
 host, meta.graph.meta.com, Muse
 host, ar.graph.meta.com, Muse
+# Muse edge connection and desktop voice WebSocket
+host, edge-metaclaw-http.c10r.facebook.com, Muse
+host, shortwave.facebook.com, Muse
