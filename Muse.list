@@ -1,5 +1,5 @@
 # Quantumult X remote filter - Meta Muse (coverage-expanded)
-# Updated: 2026-11-09
+# Updated: 2026-11-10
 # Policy: Muse. Select ONE stable proxy node in the Muse policy group.
 # Sources: Meta Muse transport teardown, public Muse routing reports,
 # and Quantumult X/Facebook rules from community maintainers.
@@ -7,6 +7,15 @@
 # assets, and live connections can be shared with those platforms.
 # This ALSO routes unrelated Facebook/Instagram traffic via Muse.
 # No MITM/rewrite/resource parser is required; avoid auto-switching nodes.
+# Research note (2026-11-10): App transport domains (muse.ai, meta.ai,
+# metaaivm.com, facebook.com) were already covered. Added adjacent Meta
+# asset/link domains from community rule lists as a conservative fallback,
+# NOT as proof they are needed by Muse. Do not add broad IP/ASN rules.
+# Connection failures may also be Meta server/credential/region issues.
+# In Quantumult X: refresh this remote resource; set force-policy=Muse,
+# prefer inserted-resource=true for rule conflict; use a stable node.
+# If it still fails, inspect Network Activity for unmatched/REJECT domains.
+
 #
 # 1. Muse site, AI APIs, dedicated cloud VMs and generated assets
 host-suffix, muse.ai, Muse
@@ -28,6 +37,15 @@ host-suffix, fbcdn.net, Muse
 host-suffix, fbsbx.com, Muse
 host-suffix, cdninstagram.com, Muse
 host, fbcdn-a.akamaihd.net, Muse
+#
+#
+# 2026-11-10 supplemental Meta CDN/short-link domains (possible shared assets)
+# Source: blackmatrix7/ios_rule_script Facebook.list, NOT Muse packet capture
+host-suffix, fbcdn.com, Muse
+host-suffix, fbsbx.net, Muse
+host-suffix, igcdn.com, Muse
+host-suffix, fb.me, Muse
+host-suffix, ig.me, Muse
 #
 # 4. Observed Muse endpoints (covered above but explicit for audit)
 host, ai.meta.com, Muse
