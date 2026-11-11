@@ -1,5 +1,5 @@
 # Quantumult X remote filter - Meta Muse (coverage-expanded)
-# Updated: 2026-11-10
+# Updated: 2026-11-11
 # Policy: Muse. Select ONE stable proxy node in the Muse policy group.
 # Sources: Meta Muse transport teardown, public Muse routing reports,
 # and Quantumult X/Facebook rules from community maintainers.
@@ -58,3 +58,16 @@ host, api.meta.ai, Muse
 host, agent.meta.ai, Muse
 host, edge-metaclaw-http.c10r.facebook.com, Muse
 host, shortwave.facebook.com, Muse
+#
+# 5. Additional Meta ecosystem fallbacks (community rules; NOT Muse-capture proof)
+# Sources: MetaCubeX/meta-rules-dat geo/geosite/classical/meta.yaml
+#          blackmatrix7/ios_rule_script rule/QuantumultX/Facebook/Facebook.list
+# These are distinct Meta networking, deep-link and messaging endpoints missing
+# from the 2026-11-10 Muse file. They may route unrelated Meta traffic.
+# Deliberately exclude bulk WhatsApp/Threads domains, wide ASN/IP rules.
+host-suffix, fbidb.io, Muse
+host-suffix, fburl.com, Muse
+host-suffix, tfbnw.net, Muse
+host-suffix, fbmessenger.com, Muse
+host-suffix, messenger.com, Muse
+host-suffix, m.me, Muse
