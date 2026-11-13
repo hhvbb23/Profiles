@@ -1,5 +1,5 @@
 # Quantumult X remote filter - ChatGPT / OpenAI
-# Updated: 2026-11-08
+# Updated: 2026-11-13
 # Policy: GPT (keep your existing Quantumult X policy group / remote URL)
 # Sources:
 #   OpenAI network requirements:
@@ -9,7 +9,23 @@
 # Covers ChatGPT iOS/web, Codex streaming/WebSocket, login, assets, upload,
 # historical Azure CDN, real-time Azure Web PubSub and LiveKit voice endpoints.
 # Routing rules are not a WebSocket keepalive or a guarantee of node reliability.
+# In QX [filter_remote], set force-policy=GPT, and ensure that strategy exists.
+# Exact-host overrides cannot fix higher-level conflicting reject rules or broken nodes.
 #
+# 0. Critical exact hosts (QX host > host-suffix when filter matching optimization is on)
+# Use exact matches for native iOS and conversation WebSocket routes.
+# Official network list: https://help.openai.com/en/articles/9247338-network-recommendations-for-chatgpt-errors-on-web-and-apps
+host, chatgpt.com, GPT
+host, ws.chatgpt.com, GPT
+host, ios.chat.openai.com, GPT
+host, chat.openai.com, GPT
+host, auth.openai.com, GPT
+host, auth0.openai.com, GPT
+host, setup.auth.openai.com, GPT
+host, tcr9i.chat.openai.com, GPT
+host, cdn.platform.openai.com, GPT
+host, files.oaiusercontent.com, GPT
+
 # 1. OpenAI-owned and product domains (includes ws.chatgpt.com / ios.chat.openai.com)
 host-suffix, chatgpt.com, GPT
 host-suffix, openai.com, GPT
